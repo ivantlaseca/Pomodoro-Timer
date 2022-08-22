@@ -4,7 +4,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import PauseButton from './PauseButton';
 import PlayButton from './PlayButton';
 import SettingsButton from './SettingsButton';
-import SettingsContext from './SettingsContext';
+import PageContext from './PageContext';
 import ViewProgressButton from './ViewProgressButton';
 import BackToTopicsButton from './BackToTopicsButton';
 
@@ -12,8 +12,8 @@ const red = '#f54e4e';
 const green = '#4aec8c';
 
 function Timer() {
-    const settingsInfo = useContext(SettingsContext);
-
+    const pageInfo = useContext(PageContext);
+    
     const [isPaused, setIsPaused] = useState(true);
     const [mode, setMode] = useState('work'); // work/break/null
     const [secondsLeft, setSecondsLeft] = useState(0);
@@ -24,7 +24,7 @@ function Timer() {
 
     function switchMode(){
         const nextMode = modeRef.current === 'work' ? 'break' : 'work';
-        const nextSeconds = (nextMode === 'work' ? settingsInfo.workMinutes : settingsInfo.breakMinutes) * 60;
+        const nextSeconds = (nextMode === 'work' ? pageInfo.workMinutes : pageInfo.breakMinutes) * 60;
         setMode(nextMode);
         modeRef.current = nextMode;
         setSecondsLeft(nextSeconds);
@@ -32,7 +32,7 @@ function Timer() {
     }
 
     function initTimer() {
-        secondsLeftRef.current = settingsInfo.workMinutes * 60;
+        secondsLeftRef.current = pageInfo.workMinutes * 60;
         setSecondsLeft(secondsLeftRef.current);
     }
 
@@ -55,11 +55,11 @@ function Timer() {
         },1000);
 
         return () => clearInterval(interval);
-    }, [settingsInfo]);
+    }, [pageInfo]);
 
     const totalSeconds = mode === 'work' 
-    ? settingsInfo.workMinutes * 60 
-    : settingsInfo.breakMinutes * 60;
+    ? pageInfo.workMinutes * 60 
+    : pageInfo.breakMinutes * 60;
     const percentage = Math.round(secondsLeft / totalSeconds * 100);
 
     const minutes = Math.floor(secondsLeft / 60);
@@ -82,13 +82,13 @@ function Timer() {
                 : <PauseButton onClick={() => { setIsPaused(true); isPausedRef.current = true; }} />}                
             </div>
             <div style={{marginTop:'20px'}}>
-                <ViewProgressButton onClick={() => }/>
+                <ViewProgressButton onClick={() => pageInfo.setShowProgress(true)}/>
             </div>
             <div style={{marginTop:'20px'}}>
                 <BackToTopicsButton />
             </div>
             <div style={{marginTop:'20px'}}>
-                <SettingsButton onClick={() => settingsInfo.setShowSettings(true)} />
+                <SettingsButton onClick={() => pageInfo.setShowSettings(true)} />
             </div>
         </div>
     );
