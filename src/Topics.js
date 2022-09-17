@@ -1,19 +1,30 @@
 import { useContext } from 'react';
 import PageContext from './PageContext';
 import BackButton from './BackButton';
+import EditList from './EditList';
 
-function Progress(){
+function Topics(){
+
+    function addTopic(){
+
+    }
+
+    function removeTopic(){
+
+    }
+
     const settingsInfo = useContext(PageContext);
     return(
         <div style={{textAlign: 'left'}}>
             <div style={{textAlign: 'center'}}>
-                <label>Progress</label>
+                <label>Topics</label>
+                <EditList />
             </div>
             <div style={{textAlign:'center', marginTop:'20px'}}>
-                <BackButton onClick={() => settingsInfo.setShowProgress(false)} />
+                <BackButton onClick={() => settingsInfo.setShowTopics(false)} />
             </div>
         </div>
     );
 }
 
-export default Progress;
+export default Topics;

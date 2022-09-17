@@ -4,6 +4,7 @@ import Progress from './Progress';
 import Timer from './Timer'
 import { useState } from 'react';
 import PageContext from './PageContext';
+import Topics from './Topics';
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
   const [workMinutes, setWorkMinutes] = useState(22);
   const [breakMinutes, setBreakMinutes] = useState(5);
   const [showProgress, setShowProgress] = useState(false);
+  const [showTopics, setShowTopics] = useState(false);
 
   return (
     <main>
@@ -19,6 +21,8 @@ function App() {
         setShowSettings,
         showProgress,
         setShowProgress,
+        showTopics,
+        setShowTopics,
         workMinutes,
         breakMinutes,
         setWorkMinutes,
@@ -26,6 +30,7 @@ function App() {
       }}>
         {showSettings ? <Settings />
         : showProgress ? <Progress /> 
+        : showTopics ? <Topics />
         : <Timer />} 
       </PageContext.Provider> 
     </main>

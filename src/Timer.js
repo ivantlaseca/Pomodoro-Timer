@@ -85,7 +85,7 @@ function Timer() {
                 <ViewProgressButton onClick={() => pageInfo.setShowProgress(true)}/>
             </div>
             <div style={{marginTop:'20px'}}>
-                <BackToTopicsButton />
+                <BackToTopicsButton onClick={() => pageInfo.setShowTopics(true)} />
             </div>
             <div style={{marginTop:'20px'}}>
                 <SettingsButton onClick={() => pageInfo.setShowSettings(true)} />
