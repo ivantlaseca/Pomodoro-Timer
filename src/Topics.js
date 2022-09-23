@@ -17,8 +17,8 @@ function Topics(){
     return(
         <div style={{textAlign: 'left'}}>
             <div style={{textAlign: 'center'}}>
-                <label>Topics</label>
-                <EditList />
+                <h1>Coming Soon</h1>
+                {/* <EditList /> */}
             </div>
             <div style={{textAlign:'center', marginTop:'20px'}}>
                 <BackButton onClick={() => settingsInfo.setShowTopics(false)} />

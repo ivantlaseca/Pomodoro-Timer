@@ -7,7 +7,7 @@ function Progress(){
     return(
         <div style={{textAlign: 'left'}}>
             <div style={{textAlign: 'center'}}>
-                <label>Progress</label>
+                <h1>Coming Soon</h1>
             </div>
             <div style={{textAlign:'center', marginTop:'20px'}}>
                 <BackButton onClick={() => settingsInfo.setShowProgress(false)} />

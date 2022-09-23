@@ -7,6 +7,7 @@ import SettingsButton from './SettingsButton';
 import PageContext from './PageContext';
 import ViewProgressButton from './ViewProgressButton';
 import BackToTopicsButton from './BackToTopicsButton';
+import sound from './alarm-clock-loop-90916.mp3'
 
 const red = '#f54e4e';
 const green = '#4aec8c';
@@ -21,6 +22,14 @@ function Timer() {
     const secondsLeftRef = useRef(secondsLeft);
     const isPausedRef = useRef(isPaused);
     const modeRef = useRef(mode);
+    const alarmClockSound = new Audio(sound);
+
+    function beep(){
+        alarmClockSound.play();
+        setTimeout(() =>{
+            alarmClockSound.pause();
+        },1500)
+    }
 
     function switchMode(){
         const nextMode = modeRef.current === 'work' ? 'break' : 'work';
@@ -49,6 +58,7 @@ function Timer() {
                 return;
             }
             if (secondsLeftRef.current === 0){
+                beep();
                 return switchMode();
             }
             tick();
