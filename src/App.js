@@ -1,24 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import Settings from './Settings';
+import Progress from './Progress';
+import Timer from './Timer'
+import { useState } from 'react';
+import PageContext from './PageContext';
+import Topics from './Topics';
 
 function App() {
+
+  const [showSettings, setShowSettings] = useState(false);
+  const [workMinutes, setWorkMinutes] = useState(22);
+  const [breakMinutes, setBreakMinutes] = useState(5);
+  const [showProgress, setShowProgress] = useState(false);
+  const [showTopics, setShowTopics] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <PageContext.Provider value={{
+        showSettings,
+        setShowSettings,
+        showProgress,
+        setShowProgress,
+        showTopics,
+        setShowTopics,
+        workMinutes,
+        breakMinutes,
+        setWorkMinutes,
+        setBreakMinutes,
+      }}>
+        {showSettings ? <Settings />
+        : showProgress ? <Progress /> 
+        : showTopics ? <Topics />
+        : <Timer />} 
+      </PageContext.Provider> 
+    </main>
   );
 }
 
