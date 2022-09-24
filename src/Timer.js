@@ -8,6 +8,7 @@ import PageContext from './PageContext';
 import ViewProgressButton from './ViewProgressButton';
 import BackToTopicsButton from './BackToTopicsButton';
 import sound from './alarm-clock-loop-90916.mp3'
+import useDocumentTitle from './useDocumentTitle';
 
 const red = '#f54e4e';
 const green = '#4aec8c';
@@ -52,7 +53,6 @@ function Timer() {
 
     useEffect(() => {
         initTimer();
-
         const interval = setInterval(() => {
             if (isPausedRef.current) {
                 return;
@@ -75,6 +75,8 @@ function Timer() {
     const minutes = Math.floor(secondsLeft / 60);
     let seconds = secondsLeft % 60;
     if (seconds < 10) seconds = '0' + seconds;
+
+    useDocumentTitle(`${minutes}:${seconds}`)
 
     return (
         <div>
